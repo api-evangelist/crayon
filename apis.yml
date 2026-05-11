@@ -1,0 +1,72 @@
+aid: crayon
+name: Crayon
+description: >-
+  Crayon is a competitive intelligence platform that automates the
+  gathering, analysis, and distribution of competitor data from websites,
+  social media, news, reviews, and other digital sources to power
+  battlecards, win/loss analysis, and sales enablement. Its 2026 'Sparks'
+  AI feature analyzes competitors' strategic moves and generates summaries
+  for go-to-market teams. Crayon offers Content and Answers APIs plus a
+  Competitive Intelligence MCP Server for integrating competitor insights
+  into platforms like ChatGPT, Glean, Copilot, Slack, and CRMs.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Competitive Intelligence
+  - Market Intelligence
+  - Sales Enablement
+  - Battlecards
+  - Win-Loss Analysis
+  - AI
+  - MCP
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/crayon/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: crayon:content-answers-api
+    name: Crayon Content and Answers API
+    description: >-
+      REST API providing programmatic access to Crayon competitive
+      intelligence content, battlecards, and AI-generated answers for
+      integration into CRMs, enterprise search, and chat platforms.
+      SDKs, Swagger, and testing endpoints are available from the
+      developer portal.
+    humanURL: https://apidocs.crayon.com
+    baseURL: https://apidocs.crayon.com
+    tags:
+      - Competitive Intelligence
+      - Battlecards
+      - Content
+      - Answers
+    properties:
+      - type: Documentation
+        url: https://apidocs.crayon.com
+  - aid: crayon:mcp-server
+    name: Crayon Competitive Intelligence MCP Server
+    description: >-
+      Model Context Protocol server (Competitive Data Platform) that
+      exposes Crayon competitive intelligence to AI assistants and tools
+      such as ChatGPT, Glean, Copilot, Slack, and CRM systems.
+    humanURL: https://www.crayon.co
+    baseURL: https://apidocs.crayon.com
+    tags:
+      - MCP
+      - Competitive Intelligence
+      - AI
+    properties:
+      - type: Website
+        url: https://www.crayon.co
+common:
+  - type: Website
+    url: https://www.crayon.co
+  - type: Documentation
+    url: https://apidocs.crayon.com
+  - type: Pricing
+    url: https://www.crayon.co/request-a-demo
+  - type: Sign Up
+    url: https://www.crayon.co/request-a-demo
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
