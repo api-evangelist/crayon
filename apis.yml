@@ -65,7 +65,7 @@ common:
     url: https://apidocs.crayon.com
   - type: Pricing
     url: https://www.crayon.co/request-a-demo
-  - type: Sign Up
+  - type: SignUp
     url: https://www.crayon.co/request-a-demo
 maintainers:
   - FN: Kin Lane
