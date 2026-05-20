@@ -59,6 +59,8 @@ apis:
       - type: Website
         url: https://www.crayon.co
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/crayon-group
   - type: Website
     url: https://www.crayon.co
   - type: Documentation
