@@ -1,0 +1,433 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Crayon API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.crayon.com/api/v1/connect/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Get access token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/clients"
+          },
+          "docs": "List clients"
+        },
+        {
+          "info": {
+            "name": "Get client by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get client by id"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/organizations"
+          },
+          "docs": "List organizations"
+        },
+        {
+          "info": {
+            "name": "Get organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/organizations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get organization"
+        },
+        {
+          "info": {
+            "name": "Get organization access",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/organizations/:id/access",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get organization access"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/users"
+          },
+          "docs": "List users"
+        },
+        {
+          "info": {
+            "name": "Create user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.crayon.com/api/v1/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create user"
+        },
+        {
+          "info": {
+            "name": "Get user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get user"
+        },
+        {
+          "info": {
+            "name": "Update user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.crayon.com/api/v1/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update user"
+        },
+        {
+          "info": {
+            "name": "Delete user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.crayon.com/api/v1/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete user"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CustomerTenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customer tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/customerTenants"
+          },
+          "docs": "List customer tenants"
+        },
+        {
+          "info": {
+            "name": "Create customer tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.crayon.com/api/v1/customerTenants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create customer tenant"
+        },
+        {
+          "info": {
+            "name": "Get customer tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/customerTenants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get customer tenant"
+        },
+        {
+          "info": {
+            "name": "Delete customer tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.crayon.com/api/v1/customerTenants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete customer tenant"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/subscriptions"
+          },
+          "docs": "List subscriptions"
+        },
+        {
+          "info": {
+            "name": "Create subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.crayon.com/api/v1/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create subscription"
+        },
+        {
+          "info": {
+            "name": "Get subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get subscription"
+        },
+        {
+          "info": {
+            "name": "Update subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.crayon.com/api/v1/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update subscription"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agreements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agreements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/agreements"
+          },
+          "docs": "List agreements"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/invoices"
+          },
+          "docs": "List invoices"
+        },
+        {
+          "info": {
+            "name": "List billing statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/billingStatements"
+          },
+          "docs": "List billing statements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
