@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: searched
+source: openapi/crayon-openapi.yml
+docs: https://apidocs.crayon.com/scenarios/token-get.html
+note: >-
+  Crayon's API (Cloud-iQ) documents a single OAuth2 scope, CustomerApi, used
+  when requesting a token from the connect/token endpoint; no finer-grained
+  scopes are published (https://apidocs.crayon.com/getting-started/authentication.html).
+schemes:
+- name: OAuth2
+  source: openapi/crayon-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.crayon.com/api/v1/connect/token
+scopes:
+- scope: CustomerApi
+  description: >-
+    Grants access to the Crayon customer API (Cloud-iQ); the single scope
+    value passed when requesting an OAuth2 token.
+  sources:
+  - https://apidocs.crayon.com/scenarios/token-get.html

@@ -59,6 +59,8 @@ apis:
       - type: Website
         url: https://www.crayon.co
 common:
+  - type: OAuthScopes
+    url: scopes/crayon-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/crayon-group
   - type: Website
@@ -69,6 +71,8 @@ common:
     url: https://www.crayon.co/request-a-demo
   - type: Signup
     url: https://www.crayon.co/request-a-demo
+  - url: https://www.crayon.co/blog/rss.xml
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
