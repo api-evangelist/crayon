@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/crayon-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.crayon.com/api/v1/connect/token
+    scopes: 0
+  sources:
+  - openapi/crayon-openapi.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/crayon-openapi.yml

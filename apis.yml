@@ -59,6 +59,10 @@ apis:
       - type: Website
         url: https://www.crayon.co
 common:
+  - type: DomainSecurity
+    url: security/crayon-domain-security.yml
+  - type: Authentication
+    url: authentication/crayon-authentication.yml
   - type: OAuthScopes
     url: scopes/crayon-scopes.yml
   - type: LinkedIn
