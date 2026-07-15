@@ -59,6 +59,8 @@ apis:
       - type: Website
         url: https://www.crayon.co
 common:
+  - type: AgenticAccess
+    url: agentic-access/crayon-agentic-access.yml
   - type: DomainSecurity
     url: security/crayon-domain-security.yml
   - type: Authentication
