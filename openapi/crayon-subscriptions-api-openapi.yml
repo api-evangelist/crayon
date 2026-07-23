@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: Crayon Agreements Subscriptions API
+  description: 'Crayon''s REST API for managing CSP organizations, users, customer tenants,
+
+    Microsoft subscriptions, Azure plans, agreements, invoices and billing
+
+    statements. Endpoint inventory drawn from the public scenarios catalog at
+
+    https://apidocs.crayon.com.
+
+    '
+  version: '1.0'
+  contact:
+    name: Crayon API Support
+    url: https://apidocs.crayon.com
+servers:
+- url: https://api.crayon.com/api/v1
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Subscriptions
+paths:
+  /subscriptions:
+    get:
+      summary: List subscriptions
+      operationId: getSubscriptions
+      tags:
+      - Subscriptions
+      responses:
+        '200':
+          description: Subscriptions
+    post:
+      summary: Create subscription
+      operationId: createSubscription
+      tags:
+      - Subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+  /subscriptions/{id}:
+    get:
+      summary: Get subscription
+      operationId: getSubscription
+      tags:
+      - Subscriptions
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Subscription
+    patch:
+      summary: Update subscription
+      operationId: updateSubscription
+      tags:
+      - Subscriptions
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.crayon.com/api/v1/connect/token
+          scopes: {}
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,61 @@
+openapi: 3.1.0
+info:
+  title: Crayon Agreements Authentication API
+  description: 'Crayon''s REST API for managing CSP organizations, users, customer tenants,
+
+    Microsoft subscriptions, Azure plans, agreements, invoices and billing
+
+    statements. Endpoint inventory drawn from the public scenarios catalog at
+
+    https://apidocs.crayon.com.
+
+    '
+  version: '1.0'
+  contact:
+    name: Crayon API Support
+    url: https://apidocs.crayon.com
+servers:
+- url: https://api.crayon.com/api/v1
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Authentication
+paths:
+  /connect/token:
+    post:
+      summary: Get access token
+      operationId: getToken
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                scope:
+                  type: string
+      responses:
+        '200':
+          description: Token response
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.crayon.com/api/v1/connect/token
+          scopes: {}
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

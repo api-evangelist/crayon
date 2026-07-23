@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Crayon Agreements Organizations API
+  description: 'Crayon''s REST API for managing CSP organizations, users, customer tenants,
+
+    Microsoft subscriptions, Azure plans, agreements, invoices and billing
+
+    statements. Endpoint inventory drawn from the public scenarios catalog at
+
+    https://apidocs.crayon.com.
+
+    '
+  version: '1.0'
+  contact:
+    name: Crayon API Support
+    url: https://apidocs.crayon.com
+servers:
+- url: https://api.crayon.com/api/v1
+  description: Production
+security:
+- BearerAuth: []
+tags:
+- name: Organizations
+paths:
+  /organizations:
+    get:
+      summary: List organizations
+      operationId: getOrganizations
+      tags:
+      - Organizations
+      responses:
+        '200':
+          description: Organizations
+  /organizations/{id}:
+    get:
+      summary: Get organization
+      operationId: getOrganization
+      tags:
+      - Organizations
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Organization
+  /organizations/{id}/access:
+    get:
+      summary: Get organization access
+      operationId: getOrganizationAccess
+      tags:
+      - Organizations
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Access list
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.crayon.com/api/v1/connect/token
+          scopes: {}
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
