@@ -1,0 +1,28 @@
+{
+  "provider": "crayon",
+  "sources": [
+    "crayon-agreements-api-openapi.yml",
+    "crayon-authentication-api-openapi.yml",
+    "crayon-billing-api-openapi.yml",
+    "crayon-clients-api-openapi.yml",
+    "crayon-customertenants-api-openapi.yml",
+    "crayon-organizations-api-openapi.yml",
+    "crayon-subscriptions-api-openapi.yml",
+    "crayon-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "crayon-agreements-api-openapi.yml",
+    "crayon-authentication-api-openapi.yml",
+    "crayon-billing-api-openapi.yml",
+    "crayon-clients-api-openapi.yml",
+    "crayon-customertenants-api-openapi.yml",
+    "crayon-organizations-api-openapi.yml",
+    "crayon-subscriptions-api-openapi.yml",
+    "crayon-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

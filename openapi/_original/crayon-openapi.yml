@@ -1,0 +1,264 @@
+openapi: 3.1.0
+info:
+  title: Crayon API
+  description: |
+    Crayon's REST API for managing CSP organizations, users, customer tenants,
+    Microsoft subscriptions, Azure plans, agreements, invoices and billing
+    statements. Endpoint inventory drawn from the public scenarios catalog at
+    https://apidocs.crayon.com.
+  version: "1.0"
+  contact:
+    name: Crayon API Support
+    url: https://apidocs.crayon.com
+servers:
+  - url: https://api.crayon.com/api/v1
+    description: Production
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.crayon.com/api/v1/connect/token
+          scopes: {}
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - BearerAuth: []
+paths:
+  /connect/token:
+    post:
+      summary: Get access token
+      operationId: getToken
+      tags: [Authentication]
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type: { type: string }
+                client_id: { type: string }
+                client_secret: { type: string }
+                scope: { type: string }
+      responses:
+        "200": { description: Token response }
+  /clients:
+    get:
+      summary: List clients
+      operationId: getClients
+      tags: [Clients]
+      responses:
+        "200": { description: List of clients }
+  /clients/{id}:
+    get:
+      summary: Get client by id
+      operationId: getClient
+      tags: [Clients]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200": { description: Client }
+  /organizations:
+    get:
+      summary: List organizations
+      operationId: getOrganizations
+      tags: [Organizations]
+      responses:
+        "200": { description: Organizations }
+  /organizations/{id}:
+    get:
+      summary: Get organization
+      operationId: getOrganization
+      tags: [Organizations]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200": { description: Organization }
+  /organizations/{id}/access:
+    get:
+      summary: Get organization access
+      operationId: getOrganizationAccess
+      tags: [Organizations]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200": { description: Access list }
+  /users:
+    get:
+      summary: List users
+      operationId: getUsers
+      tags: [Users]
+      responses:
+        "200": { description: Users }
+    post:
+      summary: Create user
+      operationId: createUser
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        "201": { description: Created }
+  /users/{id}:
+    get:
+      summary: Get user
+      operationId: getUser
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200": { description: User }
+    patch:
+      summary: Update user
+      operationId: updateUser
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        "200": { description: Updated }
+    delete:
+      summary: Delete user
+      operationId: deleteUser
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "204": { description: Deleted }
+  /customerTenants:
+    get:
+      summary: List customer tenants
+      operationId: getCustomerTenants
+      tags: [CustomerTenants]
+      responses:
+        "200": { description: Customer tenants }
+    post:
+      summary: Create customer tenant
+      operationId: createCustomerTenant
+      tags: [CustomerTenants]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        "201": { description: Created }
+  /customerTenants/{id}:
+    get:
+      summary: Get customer tenant
+      operationId: getCustomerTenant
+      tags: [CustomerTenants]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200": { description: Customer tenant }
+    delete:
+      summary: Delete customer tenant
+      operationId: deleteCustomerTenant
+      tags: [CustomerTenants]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "204": { description: Deleted }
+  /subscriptions:
+    get:
+      summary: List subscriptions
+      operationId: getSubscriptions
+      tags: [Subscriptions]
+      responses:
+        "200": { description: Subscriptions }
+    post:
+      summary: Create subscription
+      operationId: createSubscription
+      tags: [Subscriptions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        "201": { description: Created }
+  /subscriptions/{id}:
+    get:
+      summary: Get subscription
+      operationId: getSubscription
+      tags: [Subscriptions]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Subscription }
+    patch:
+      summary: Update subscription
+      operationId: updateSubscription
+      tags: [Subscriptions]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        "200": { description: Updated }
+  /agreements:
+    get:
+      summary: List agreements
+      operationId: getAgreements
+      tags: [Agreements]
+      responses:
+        "200": { description: Agreements }
+  /invoices:
+    get:
+      summary: List invoices
+      operationId: getInvoices
+      tags: [Billing]
+      responses:
+        "200": { description: Invoices }
+  /billingStatements:
+    get:
+      summary: List billing statements
+      operationId: getBillingStatements
+      tags: [Billing]
+      responses:
+        "200": { description: Billing statements }
