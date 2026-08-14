@@ -1,27 +1,33 @@
 aid: crayon
 name: Crayon
 description: >-
-  Crayon is a competitive intelligence platform that automates the
-  gathering, analysis, and distribution of competitor data from websites,
-  social media, news, reviews, and other digital sources to power
-  battlecards, win/loss analysis, and sales enablement. Its 2026 'Sparks'
-  AI feature analyzes competitors' strategic moves and generates summaries
-  for go-to-market teams. Crayon offers Content and Answers APIs plus a
-  Competitive Intelligence MCP Server for integrating competitor insights
-  into platforms like ChatGPT, Glean, Copilot, Slack, and CRMs.
+  Crayon is a Boston-based competitive intelligence platform that automatically captures,
+  analyzes and distributes competitor activity — website and pricing changes, product updates,
+  social posts, news, reviews, job postings and review-site sentiment — and turns it into
+  battlecards, competitor profiles, win/loss stories, objection handling and email digests for
+  product marketing, sales enablement and go-to-market teams. Crayon AI adds automated
+  summarization, dynamic battlecard updates and the 2026 'Sparks' feature, which reads a
+  competitor's strategic moves and writes them up for revenue teams. On 2026-09-04 Crayon shipped
+  what it describes as the first competitive-intelligence MCP server, a hosted OAuth-protected
+  Model Context Protocol endpoint that exposes a customer's own curated Crayon content to Claude,
+  ChatGPT, Glean, Microsoft Copilot, Google Gemini and internal Slack or Teams assistants. Crayon
+  also markets a Content API and an Answers API, but publishes no developer portal, reference or
+  machine-readable specification for either. NOTE: Crayon (crayon.co) is unrelated to Crayon
+  Group ASA (crayon.com), the Norwegian Microsoft CSP.
 type: Index
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: request
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Contact sales
+  confidence: high
   source:
-  - authentication
-  generated: '2026-07-22'
-  method: derived
+  - plans/crayon-plans-pricing.yml
+  - https://www.crayon.co/pricing
+  generated: '2026-08-14'
+  method: searched
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/crayon.png
 tags:
   - Competitive Intelligence
@@ -29,145 +35,141 @@ tags:
   - Sales Enablement
   - Battlecards
   - Win-Loss Analysis
+  - Product Marketing
   - AI
   - MCP
 url: >-
   https://raw.githubusercontent.com/api-evangelist/crayon/refs/heads/main/apis.yml
 created: '2026-05-11'
-modified: '2026-05-11'
+modified: '2026-08-14'
 specificationVersion: '0.19'
 apis:
+- aid: crayon:mcp-server
+  name: Crayon Competitive Intelligence MCP Server
+  description: >-
+    Hosted Model Context Protocol server exposing a customer's curated Crayon competitive
+    intelligence — battlecards, win/loss stories, competitor profiles, objection handling and
+    customer proof points — to MCP-capable assistants such as Claude, ChatGPT, Glean, Microsoft
+    Copilot, Google Gemini and internal Slack or Teams bots. JSON-RPC over Streamable HTTP,
+    protected by OAuth 2.1 with dynamic client registration and the single scope mcp:read.
+    Verified live: an anonymous tools/list POST returns HTTP 401 with an RFC 9728
+    resource_metadata challenge, so the tool set is auth-gated.
+  humanURL: https://www.crayon.co/blog/crayon-launches-first-competitive-intelligence-mcp-server
+  baseURL: https://mcp.crayon.co/mcp/
+  tags:
+  - MCP
+  - Competitive Intelligence
+  - AI
+  properties:
+  - type: MCPServer
+    url: mcp/crayon-mcp.yml
+  - type: Authentication
+    url: authentication/crayon-authentication.yml
+  - type: OAuthScopes
+    url: scopes/crayon-scopes.yml
+  x-evidence:
+    verified: '2026-08-14'
+    method: probed
+    url: https://mcp.crayon.co/mcp/
+    http_status: 401
+    note: >-
+      401 WWW-Authenticate Bearer with resource_metadata pointing at
+      https://mcp.crayon.co/.well-known/oauth-protected-resource/mcp/, which names
+      https://app.crayon.co/ as the authorization server — proving the endpoint is operated by
+      Crayon (crayon.co).
 - aid: crayon:content-answers-api
   name: Crayon Content and Answers API
   description: >-
-    REST API providing programmatic access to Crayon competitive intelligence content, battlecards, and
-    AI-generated answers for integration into CRMs, enterprise search, and chat platforms. SDKs, Swagger,
-    and testing endpoints are available from the developer portal.
-  humanURL: https://apidocs.crayon.com
-  baseURL: https://apidocs.crayon.com
+    Crayon markets a Content API (battlecards, win/loss stories, competitor profiles, objection
+    handling, customer proof points) and an Answers API (structured real-time answers) for pulling
+    curated competitive content into CRMs, enterprise search, Slackbots and custom AI assistants.
+    Both are announced in Crayon's own blog posts, but NO endpoint, base URL, authentication
+    model, reference or machine-readable specification is published for either — access runs
+    through a sales conversation. No baseURL is recorded because Crayon publishes none; it is
+    deliberately absent rather than guessed from the domain.
+  humanURL: https://www.crayon.co/blog/connecting-competitive-intel-to-enterprise-ai-with-api-mcp
   tags:
   - Competitive Intelligence
   - Battlecards
   - Content
   - Answers
   properties:
-  - type: Documentation
-    url: https://apidocs.crayon.com
-- aid: crayon:mcp-server
-  name: Crayon Competitive Intelligence MCP Server
-  description: >-
-    Model Context Protocol server (Competitive Data Platform) that exposes Crayon competitive intelligence
-    to AI assistants and tools such as ChatGPT, Glean, Copilot, Slack, and CRM systems.
-  humanURL: https://www.crayon.co
-  baseURL: https://apidocs.crayon.com
-  tags:
-  - MCP
-  - Competitive Intelligence
-  - AI
-  properties:
-  - type: Website
-    url: https://www.crayon.co
-- aid: crayon:crayon-agreements-api
-  name: Crayon Agreements API
-  description: The Agreements API from Crayon — 1 operation(s) for agreements.
-  humanURL: https://apidocs.crayon.com
-  baseURL: https://apidocs.crayon.com
-  tags:
-  - Agreements
-  properties:
-  - type: OpenAPI
-    url: openapi/crayon-agreements-api-openapi.yml
-- aid: crayon:crayon-authentication-api
-  name: Crayon Authentication API
-  description: The Authentication API from Crayon — 1 operation(s) for authentication.
-  humanURL: https://apidocs.crayon.com
-  baseURL: https://apidocs.crayon.com
-  tags:
-  - Authentication
-  properties:
-  - type: OpenAPI
-    url: openapi/crayon-authentication-api-openapi.yml
-- aid: crayon:crayon-billing-api
-  name: Crayon Billing API
-  description: The Billing API from Crayon — 2 operation(s) for billing.
-  humanURL: https://apidocs.crayon.com
-  baseURL: https://apidocs.crayon.com
-  tags:
-  - Billing
-  properties:
-  - type: OpenAPI
-    url: openapi/crayon-billing-api-openapi.yml
-- aid: crayon:crayon-clients-api
-  name: Crayon Clients API
-  description: The Clients API from Crayon — 2 operation(s) for clients.
-  humanURL: https://apidocs.crayon.com
-  baseURL: https://apidocs.crayon.com
-  tags:
-  - Clients
-  properties:
-  - type: OpenAPI
-    url: openapi/crayon-clients-api-openapi.yml
-- aid: crayon:crayon-customertenants-api
-  name: Crayon CustomerTenants API
-  description: The CustomerTenants API from Crayon — 2 operation(s) for customertenants.
-  humanURL: https://apidocs.crayon.com
-  baseURL: https://apidocs.crayon.com
-  tags:
-  - CustomerTenants
-  properties:
-  - type: OpenAPI
-    url: openapi/crayon-customertenants-api-openapi.yml
-- aid: crayon:crayon-organizations-api
-  name: Crayon Organizations API
-  description: The Organizations API from Crayon — 3 operation(s) for organizations.
-  humanURL: https://apidocs.crayon.com
-  baseURL: https://apidocs.crayon.com
-  tags:
-  - Organizations
-  properties:
-  - type: OpenAPI
-    url: openapi/crayon-organizations-api-openapi.yml
-- aid: crayon:crayon-subscriptions-api
-  name: Crayon Subscriptions API
-  description: The Subscriptions API from Crayon — 2 operation(s) for subscriptions.
-  humanURL: https://apidocs.crayon.com
-  baseURL: https://apidocs.crayon.com
-  tags:
-  - Subscriptions
-  properties:
-  - type: OpenAPI
-    url: openapi/crayon-subscriptions-api-openapi.yml
-- aid: crayon:crayon-users-api
-  name: Crayon Users API
-  description: The Users API from Crayon — 2 operation(s) for users.
-  humanURL: https://apidocs.crayon.com
-  baseURL: https://apidocs.crayon.com
-  tags:
-  - Users
-  properties:
-  - type: OpenAPI
-    url: openapi/crayon-users-api-openapi.yml
+  - type: Announcement
+    url: https://www.crayon.co/blog/connecting-competitive-intel-to-enterprise-ai-with-api-mcp
+  x-evidence:
+    verified: '2026-08-14'
+    method: searched
+    note: >-
+      Named by the vendor at
+      https://www.crayon.co/blog/connecting-competitive-intel-to-enterprise-ai-with-api-mcp
+      (HTTP 200) — "With Crayon's Content and Answers APIs, developers can pull curated battlecard
+      content into AI tools, Slackbots, CRM widgets, and more." No reference page exists: the
+      site's own sitemap.xml lists no developer, docs or API page, and api./docs./developer./
+      developers.crayon.co are wildcard DNS returning the marketing homepage.
 common:
-  - type: AgenticAccess
-    url: agentic-access/crayon-agentic-access.yml
-  - type: DomainSecurity
-    url: security/crayon-domain-security.yml
+  - type: MCPServer
+    url: mcp/crayon-mcp.yml
+  - type: WellKnown
+    url: well-known/crayon-well-known.yml
   - type: Authentication
     url: authentication/crayon-authentication.yml
   - type: OAuthScopes
     url: scopes/crayon-scopes.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/crayon-group
+  - type: Conventions
+    url: conventions/crayon-conventions.yml
+  - type: Conformance
+    url: conformance/crayon-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/crayon-lifecycle.yml
+  - type: Plans
+    url: plans/crayon-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/crayon-rate-limits.yml
+  - type: Packages
+    url: packages/crayon-packages.yml
+  - type: LLMsTxt
+    url: llms/crayon-llms.txt
+  - type: DomainSecurity
+    url: security/crayon-domain-security.yml
   - type: Website
     url: https://www.crayon.co
-  - type: Documentation
-    url: https://apidocs.crayon.com
+  - type: Blog
+    url: https://www.crayon.co/blog
+  - type: BlogRSS
+    url: https://www.crayon.co/blog/rss.xml
   - type: Pricing
-    url: https://www.crayon.co/request-a-demo
-  - type: Signup
-    url: https://www.crayon.co/request-a-demo
-  - url: https://www.crayon.co/blog/rss.xml
-    type: Blog
+    url: https://www.crayon.co/pricing
+  - type: Login
+    url: https://app.crayon.co/login
+  - type: TermsOfService
+    url: https://www.crayon.co/terms
+  - type: PrivacyPolicy
+    url: https://www.crayon.co/privacy
+  - type: Integrations
+    url: https://www.crayon.co/integrations
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/crayon-co
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-14'
+  status: enriched
+  artifacts_added: 11
+  pass: local-v1
+x-contract-gap:
+  note: >-
+    Crayon markets a Content API, an Answers API and an MCP server but publishes no developer
+    portal or reference for any of them — api./docs./developer.crayon.co are wildcard DNS serving
+    the marketing homepage, and the MCP endpoint that does exist returns 401 with an OAuth
+    challenge, so every schema sits behind a "book a walkthrough" form. Recorded here rather than
+    as x-coverage because this pass DID find and capture a real provider surface (the live MCP
+    endpoint plus two verbatim OAuth discovery documents), so the profile is covered, not thin.
+  evidence:
+    - url: https://mcp.crayon.co/mcp/
+      status: 401
+    - url: https://developer.crayon.co/
+      status: 200
+    - url: https://www.crayon.co/llms.txt
+      status: 404
+  checked: '2026-08-14'
