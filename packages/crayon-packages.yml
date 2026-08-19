@@ -1,0 +1,48 @@
+generated: '2026-08-14'
+method: searched
+source: registry.npmjs.org, pypi.org, rubygems.org, crates.io, pkg.go.dev, api.github.com
+package_count: 0
+packages: []
+note: >-
+  No first-party Crayon (crayon.co) client library exists in any public registry. The MCP server is
+  REMOTE-ONLY — an https endpoint an MCP client POSTs to — so there is no npx/pip package to
+  install, and Crayon ships no REST SDK because it publishes no REST reference. Crayon's GitHub
+  organization, github.com/Crayon-Co, has exactly ONE public repository (`otp-auth-web`,
+  JavaScript, last pushed 2021-04-15, no description) and it is not a client library. Beware two
+  strong false positives when re-running this search: the npm package `crayon` is an unrelated
+  terminal-colour library, and `github.com/CrayonGroup/crayon-api-sdk` belongs to Crayon Group ASA
+  (crayon.com), a different company — see _wrong-company/README.md.
+searched_registries:
+- registry: npm
+  queries: ['@crayon/mcp', crayon-mcp]
+  result: 404
+- registry: npm
+  queries: [crayon]
+  result: present-but-unrelated
+  detail: terminal string styling library, not Crayon competitive intelligence
+- registry: pypi
+  result: no first-party package
+- registry: rubygems
+  result: no first-party package
+- registry: crates.io
+  result: no first-party package
+- registry: pkg.go.dev
+  result: no first-party package
+- registry: github
+  queries: [orgs/Crayon-Co]
+  result: 200
+  detail: 1 public repo (otp-auth-web, 2021), no SDK
+x-evidence:
+- fetched: '2026-08-14'
+  url: https://registry.npmjs.org/@crayon/mcp
+  http_status: 404
+- fetched: '2026-08-14'
+  url: https://registry.npmjs.org/crayon-mcp
+  http_status: 404
+- fetched: '2026-08-14'
+  url: https://api.github.com/orgs/Crayon-Co
+  http_status: 200
+- fetched: '2026-08-14'
+  url: https://api.github.com/orgs/Crayon-Co/repos?per_page=100
+  http_status: 200
+  note: 1 repository returned

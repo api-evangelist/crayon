@@ -1,4 +1,4 @@
-generated: '2026-07-11'
+generated: '2026-08-14'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -8,27 +8,16 @@ hosts:
   cert_expires: Sep 21 00:09:20 2026 GMT
   hsts: true
   hsts_max_age: 31536000
-- host: apidocs.crayon.com
+- host: mcp.crayon.co
   https: true
-  tls_version: TLSv1.2
-  cert_expires: Sep 15 13:48:02 2026 GMT
-  hsts: false
-- host: api.crayon.com
-  https: true
-  tls_version: TLSv1.2
-  cert_expires: Jul 15 14:39:26 2026 GMT
+  tls_version: TLSv1.3
+  cert_expires: Feb  8 23:59:59 2027 GMT
   hsts: null
 domains:
 - domain: crayon.co
   dnssec: false
   caa:
   - 0 issuewild "amazonaws.com"
-  spf: true
-  dmarc: true
-  dmarc_policy: reject
-- domain: crayon.com
-  dnssec: false
-  caa: []
   spf: true
   dmarc: true
   dmarc_policy: reject

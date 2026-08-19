@@ -1,0 +1,80 @@
+generated: '2026-08-14'
+method: probed
+source: well-known/crayon-oauth-authorization-server.json
+note: >-
+  Derived from the two OAuth discovery documents Crayon serves anonymously and from the MCP
+  endpoint's 401 challenge. No OpenAPI, GraphQL SDL, AsyncAPI or docs reference exists to assert
+  anything further against, so REST-shaped standards are recorded as not-assessable rather than
+  as failures.
+
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    authorization_code + refresh_token grants advertised at https://app.crayon.co/oauth/token/
+    (well-known/crayon-oauth-authorization-server.json)
+- id: rfc8414-authorization-server-metadata
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-authorization-server returns 200 application/json with issuer,
+    authorization_endpoint, token_endpoint, registration_endpoint, revocation_endpoint
+- id: rfc9728-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-protected-resource/mcp/ returns 200 with resource, authorization_servers
+    and bearer_methods_supported; the 401 WWW-Authenticate challenge carries the matching
+    resource_metadata parameter
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: registration_endpoint https://app.crayon.co/oauth/register/ advertised in the metadata
+- id: rfc7636-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported ["S256"]
+- id: rfc6750-bearer-token
+  conforms: true
+  evidence: >-
+    bearer_methods_supported ["header"]; unauthenticated POST returns
+    WWW-Authenticate: Bearer error="invalid_token"
+- id: rfc7009-token-revocation
+  conforms: true
+  evidence: revocation_endpoint https://app.crayon.co/oauth/revoke_token/ advertised
+- id: mcp
+  conforms: true
+  evidence: >-
+    Streamable-HTTP JSON-RPC endpoint at https://mcp.crayon.co/mcp/ answering the MCP OAuth
+    challenge flow; tools/list is auth-gated so the served protocol version could not be read
+- id: openid-connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on both mcp.crayon.co and app.crayon.co
+- id: openapi
+  conforms: false
+  evidence: no OpenAPI published on any crayon.co host (STEP 0b probes all 404 or wildcard HTML)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    the 401 error body is a flat {"error","error_description"} OAuth object with content-type
+    application/json, not application/problem+json
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt 404 on www.crayon.co, app.crayon.co and mcp.crayon.co
+- id: a2a
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json 404 or wildcard HTML on every host
+
+not_assessable:
+- id: pagination
+  reason: no published spec or reference
+- id: idempotency
+  reason: no published spec or reference
+- id: json-api
+  reason: no published spec or reference
+
+compliance_program:
+  published: false
+  certifications: []
+  note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP or CSA STAR claim appears on www.crayon.co, its
+    terms, its privacy policy or any trust page — trust.crayon.co and security.crayon.co are
+    wildcard DNS returning the marketing homepage, and /security, /trust and
+    /security-and-compliance return 404. GDPR is referenced in the privacy policy as a lawful
+    basis for processing, which is not a certification. No Compliance pointer is emitted.

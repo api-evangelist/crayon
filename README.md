@@ -42,7 +42,14 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Crayon is a competitive intelligence platform that automates the gathering, analysis, and distribution of competitor data from websites, social media, news, reviews, and other digital sources to power battlecards, win/loss analysis, and sales enablement. Its 2026 'Sparks' AI feature analyzes competitors' strategic moves and generates summaries for go-to-market teams. Crayon offers Content and Answers APIs plus a Competitive Intelligence MCP Server for integrating competitor insights into platforms like ChatGPT, Glean, Copilot, Slack, and CRMs.
+Crayon is a Boston-based competitive intelligence platform that automatically captures, analyzes and distributes competitor activity — website and pricing changes, product updates, social posts, news, reviews, job postings and review-site sentiment — and turns it into battlecards, competitor profiles, win/loss stories, objection handling and email digests for product marketing, sales enablement and go-to-market teams. On 2026-09-04 Crayon shipped what it describes as the first competitive-intelligence MCP server, a hosted OAuth-protected Model Context Protocol endpoint that exposes a customer's own curated Crayon content to Claude, ChatGPT, Glean, Microsoft Copilot, Google Gemini and internal Slack or Teams assistants.
+
+> **Two different companies are named Crayon.** This profile is **Crayon, `crayon.co`** (competitive
+> intelligence, Boston). It is **not** **Crayon Group ASA, `crayon.com`** (Microsoft CSP resale and
+> software asset management, Oslo), whose API lives at `api.crayon.com` / `apidocs.crayon.com`.
+> An earlier round of this profile conflated the two; the artifacts built from Crayon Group's
+> platform have been quarantined in [`_wrong-company/`](_wrong-company/README.md) and are no longer
+> referenced or scored.
 
 **APIs.json:** [https://raw.githubusercontent.com/api-evangelist/crayon/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/crayon/refs/heads/main/apis.yml)
 
@@ -57,62 +64,86 @@ Crayon is a competitive intelligence platform that automates the gathering, anal
 - Sales Enablement
 - Battlecards
 - Win-Loss Analysis
+- Product Marketing
 - AI
 - MCP
 
 ## Timestamps
 
 - **Created:** 2026-05-11
-- **Modified:** 2026-05-11
+- **Modified:** 2026-08-14
 
 ## APIs
 
-### Crayon Content and Answers API
-
-REST API providing programmatic access to Crayon competitive intelligence content, battlecards, and AI-generated answers for integration into CRMs, enterprise search, and chat platforms. SDKs, Swagger, and testing endpoints are available from the developer portal.
-
-- **Human URL:** [https://apidocs.crayon.com](https://apidocs.crayon.com)
-- **Base URL:** `https://apidocs.crayon.com`
-
-#### Tags
-
-- Competitive Intelligence
-- Battlecards
-- Content
-- Answers
-
-#### Properties
-
-- [Documentation](https://apidocs.crayon.com)
-- [Postman Collection](collections/crayon.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/crayon.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
 ### Crayon Competitive Intelligence MCP Server
 
-Model Context Protocol server (Competitive Data Platform) that exposes Crayon competitive intelligence to AI assistants and tools such as ChatGPT, Glean, Copilot, Slack, and CRM systems.
+Hosted Model Context Protocol server exposing a customer's curated Crayon competitive intelligence
+to MCP-capable assistants. JSON-RPC over Streamable HTTP, protected by OAuth 2.1 with dynamic
+client registration and the single scope `mcp:read`.
 
-- **Human URL:** [https://www.crayon.co](https://www.crayon.co)
-- **Base URL:** `https://apidocs.crayon.com`
-
-#### Tags
-
-- MCP
-- Competitive Intelligence
-- AI
+- **Human URL:** [Crayon launches the first competitive intelligence MCP server](https://www.crayon.co/blog/crayon-launches-first-competitive-intelligence-mcp-server)
+- **Base URL:** `https://mcp.crayon.co/mcp/`
+- **Verified:** 2026-08-14 — anonymous `tools/list` POST returns HTTP 401 with an RFC 9728
+  `resource_metadata` challenge naming `https://app.crayon.co/` as the authorization server.
 
 #### Properties
 
-- [Website](https://www.crayon.co)
-- [Postman Collection](collections/crayon.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/crayon.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [MCP Server](mcp/crayon-mcp.yml)
+- [Authentication](authentication/crayon-authentication.yml)
+- [OAuth Scopes](scopes/crayon-scopes.yml)
+
+### Crayon Content and Answers API
+
+Marketed by Crayon, but no endpoint, base URL, authentication model or reference is published for
+either API — access runs through a sales conversation. No base URL is recorded because Crayon
+publishes none.
+
+- **Human URL:** [Connecting competitive intel to enterprise AI with API and MCP](https://www.crayon.co/blog/connecting-competitive-intel-to-enterprise-ai-with-api-mcp)
+
+## Artifacts
+
+| Artifact | File | Method |
+|---|---|---|
+| MCP server | [mcp/crayon-mcp.yml](mcp/crayon-mcp.yml) | probed |
+| Well-known index | [well-known/crayon-well-known.yml](well-known/crayon-well-known.yml) | probed |
+| OAuth protected resource (RFC 9728) | [well-known/crayon-oauth-protected-resource.json](well-known/crayon-oauth-protected-resource.json) | verbatim |
+| OAuth authorization server (RFC 8414) | [well-known/crayon-oauth-authorization-server.json](well-known/crayon-oauth-authorization-server.json) | verbatim |
+| Authentication | [authentication/crayon-authentication.yml](authentication/crayon-authentication.yml) | probed |
+| OAuth scopes | [scopes/crayon-scopes.yml](scopes/crayon-scopes.yml) | probed |
+| Conventions | [conventions/crayon-conventions.yml](conventions/crayon-conventions.yml) | probed |
+| Conformance | [conformance/crayon-conformance.yml](conformance/crayon-conformance.yml) | probed |
+| Lifecycle | [lifecycle/crayon-lifecycle.yml](lifecycle/crayon-lifecycle.yml) | searched |
+| Plans and pricing | [plans/crayon-plans-pricing.yml](plans/crayon-plans-pricing.yml) | searched |
+| Rate limits | [rate-limits/crayon-rate-limits.yml](rate-limits/crayon-rate-limits.yml) | searched |
+| Packages | [packages/crayon-packages.yml](packages/crayon-packages.yml) | searched |
+| llms.txt | [llms/crayon-llms.txt](llms/crayon-llms.txt) | generated |
+| Domain security | [security/crayon-domain-security.yml](security/crayon-domain-security.yml) | probed |
+
+## Not published by Crayon
+
+Recorded as measured absences, each with a probed URL and status in the artifact above:
+
+- No OpenAPI, Swagger, GraphQL SDL, AsyncAPI or JSON Schema on any `crayon.co` host.
+- No developer portal or API reference. `api.`, `docs.`, `developer.`, `developers.`, `status.`,
+  `trust.`, `security.`, `knowledge.` and `academy.crayon.co` are wildcard DNS and return the
+  byte-identical `www.crayon.co` marketing homepage with HTTP 200.
+- No `llms.txt` (404), no `security.txt` (404), no A2A agent card (404 on both the canonical and
+  legacy paths), no `api-catalog`, no `ai-plugin.json`.
+- No status page — `crayon.statuspage.io` is unclaimed and redirects to `statuspage.io`.
+- No published pricing, rate limits, changelog, release notes, roadmap, SLA or deprecation policy.
+- No first-party SDK, CLI or client library in any public registry.
+- No published compliance certifications (no SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP claim).
 
 ## Common Properties
 
-- [LinkedIn](https://www.linkedin.com/company/crayon-group)
 - [Website](https://www.crayon.co)
-- [Documentation](https://apidocs.crayon.com)
-- [Pricing](https://www.crayon.co/request-a-demo)
-- [Sign Up](https://www.crayon.co/request-a-demo)
+- [Blog](https://www.crayon.co/blog)
+- [Pricing](https://www.crayon.co/pricing)
+- [Login](https://app.crayon.co/login)
+- [Terms of Service](https://www.crayon.co/terms)
+- [Privacy Policy](https://www.crayon.co/privacy)
+- [Integrations](https://www.crayon.co/integrations)
+- [LinkedIn](https://www.linkedin.com/company/crayon-co)
 
 ## Maintainers
 

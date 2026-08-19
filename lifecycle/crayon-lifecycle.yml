@@ -1,0 +1,46 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.crayon.co/sitemap.xml
+versioning:
+  scheme: null
+  current: null
+  docs: null
+  note: >-
+    No versioning policy is published. The MCP endpoint is unversioned in its path
+    (https://mcp.crayon.co/mcp/); the only version signal on the estate is the MCP protocol
+    version negotiated per session.
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: No deprecation or sunset policy is published; RFC 8594 support could not be observed anonymously.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_note: >-
+  There is no status page. status.crayon.co is wildcard DNS and returns the www.crayon.co
+  marketing homepage (HTTP 200, byte-identical 120,191-byte body), and
+  https://status.crayon.co/api/v2/status.json returns the same HTML rather than Statuspage JSON.
+  https://crayon.statuspage.io/ is an unclaimed subdomain whose /api/v2/status.json redirects to
+  https://www.statuspage.io — i.e. Atlassian's marketing site, not a Crayon status page. Recorded
+  as absent; no StatusPage pointer is emitted.
+changelog: null
+changelog_note: >-
+  No release notes or changelog. Product announcements are published as marketing blog posts on
+  https://www.crayon.co/blog (captured in blogs/), which are undated as a change record and carry
+  no version identifiers.
+roadmap: null
+deprecated_operations: []
+x-evidence:
+- fetched: '2026-08-14'
+  url: https://status.crayon.co/api/v2/status.json
+  http_status: 200
+  note: returns the crayon.co marketing HTML, not Statuspage JSON — wildcard catch-all
+- fetched: '2026-08-14'
+  url: https://crayon.statuspage.io/api/v2/status.json
+  http_status: 200
+  note: 'body: redirect to https://www.statuspage.io — unclaimed subdomain'
+- fetched: '2026-08-14'
+  url: https://www.crayon.co/sitemap.xml
+  http_status: 200
+  note: no status, changelog, release-notes, roadmap, SLA or deprecation page

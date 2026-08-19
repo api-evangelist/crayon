@@ -1,0 +1,28 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.crayon.co/
+limit_count: 0
+limits: []
+response_headers: []
+exhaustion_status: null
+note: >-
+  Crayon documents no rate limits anywhere public. There is no developer portal, no API reference
+  and no docs host (api./docs./developer./developers.crayon.co all resolve to the wildcard HubSpot
+  marketing homepage), so there is no page on which a limit, window, burst or Retry-After
+  convention could be published. The one live API surface — the MCP server at
+  https://mcp.crayon.co/mcp/ — returns 401 before any request is processed, so no RateLimit-*,
+  X-RateLimit-* or Retry-After header could be observed on an unauthenticated response either. An
+  honest zero, not an unchecked one.
+x-evidence:
+- fetched: '2026-08-14'
+  url: https://mcp.crayon.co/mcp/
+  http_status: 401
+  note: response carries no RateLimit-*, X-RateLimit-* or Retry-After header
+- fetched: '2026-08-14'
+  url: https://developer.crayon.co/
+  http_status: 200
+  note: wildcard DNS; serves the byte-identical www.crayon.co marketing homepage, not docs
+- fetched: '2026-08-14'
+  url: https://www.crayon.co/sitemap.xml
+  http_status: 200
+  note: no developer, docs, reference or limits page in the published sitemap

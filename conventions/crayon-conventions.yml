@@ -1,0 +1,75 @@
+generated: '2026-08-14'
+method: probed
+source: https://mcp.crayon.co/mcp/
+scope: >-
+  Covers ONLY the one callable Crayon surface that could be observed anonymously — the MCP server.
+  The Content API and Answers API Crayon markets have no public reference, so none of their
+  conventions are recorded. Every field below is either observed on the wire or an explicit
+  "not published"; nothing is inferred from a spec, because there is no spec.
+
+authentication:
+  style: OAuth 2.1 authorization_code + PKCE, bearer token in the Authorization header
+  registration: dynamic (RFC 7591) at https://app.crayon.co/oauth/register/
+  scopes: [mcp:read]
+  detail: authentication/crayon-authentication.yml
+
+transport:
+  protocol: MCP over Streamable HTTP (JSON-RPC 2.0 over POST)
+  endpoint: https://mcp.crayon.co/mcp/
+  trailing_slash_required: true
+  trailing_slash_note: >-
+    POST to https://mcp.crayon.co/mcp (no trailing slash) returns HTTP 307 with
+    Location: https://mcp.crayon.co/mcp/. A client that does not preserve the method and body
+    across a 307 will silently fail; this is a real integration trap and is recorded as observed.
+  accept: application/json, text/event-stream
+  server_header: openresty/1.29.2.5
+
+error_envelope:
+  format: flat OAuth-style JSON object
+  content_type: application/json
+  fields: [error, error_description]
+  problem_json: false
+  note: >-
+    Not RFC 9457. The 401 body is {"error":"invalid_token","error_description":"..."} and the
+    same information is repeated in the WWW-Authenticate header along with a resource_metadata
+    parameter pointing at the RFC 9728 document.
+  detail: conformance/crayon-conformance.yml
+
+idempotency:
+  supported: null
+  header: null
+  note: >-
+    Not published and not observable — no idempotency key header, scope or retention window is
+    documented anywhere, and the surface is read-only (mcp:read) with no write operation exposed
+    to test. NOT recorded as supported, and no Idempotency pointer is emitted.
+
+pagination:
+  style: null
+  note: not published; tools/list is auth-gated so no cursor convention could be observed
+
+versioning:
+  style: none-in-path
+  note: >-
+    The endpoint path carries no version. MCP protocol version is negotiated per session via the
+    MCP-Protocol-Version header. See lifecycle/crayon-lifecycle.yml.
+
+rate_limit_signaling:
+  headers: []
+  note: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header appears on the observed responses.
+    See rate-limits/crayon-rate-limits.yml.
+
+request_tracing:
+  header: null
+  note: no request-id or correlation header returned on the observed responses
+
+field_expansion: null
+metadata: null
+
+x-evidence:
+- fetched: '2026-08-14'
+  url: https://mcp.crayon.co/mcp
+  http_status: 307
+- fetched: '2026-08-14'
+  url: https://mcp.crayon.co/mcp/
+  http_status: 401

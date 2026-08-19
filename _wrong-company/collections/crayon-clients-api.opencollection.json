@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Crayon Agreements Clients API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/clients"
+          },
+          "docs": "List clients"
+        },
+        {
+          "info": {
+            "name": "Get client by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get client by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

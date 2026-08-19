@@ -1,0 +1,91 @@
+generated: '2026-08-14'
+method: probed
+source: https://mcp.crayon.co/mcp/
+status: published
+name: Crayon Competitive Intelligence MCP Server
+description: >-
+  Crayon's hosted Model Context Protocol server, announced 2026-09-04 as the first
+  competitive-intelligence MCP server. It exposes the competitive content a customer already
+  manages in Crayon — battlecards, win/loss stories, competitor profiles, objection handling
+  and customer proof points — to MCP-capable assistants (Claude, ChatGPT, Glean, Microsoft
+  Copilot, Google Gemini, Slack/Teams bots and custom assistants).
+
+deployment:
+  mode: remote
+  endpoint: https://mcp.crayon.co/mcp/
+  auth: oauth
+  verified: probed
+
+server:
+  name: crayon
+  transport: http
+  url: https://mcp.crayon.co/mcp/
+  protocol_version_sent: '2026-06-18'
+
+authorization:
+  model: OAuth 2.1 with RFC 9728 protected-resource metadata and RFC 7591 dynamic client registration
+  resource: https://mcp.crayon.co/mcp/
+  authorization_servers:
+  - https://app.crayon.co/
+  issuer: https://app.crayon.co
+  authorization_endpoint: https://app.crayon.co/oauth/authorize/
+  token_endpoint: https://app.crayon.co/oauth/token/
+  revocation_endpoint: https://app.crayon.co/oauth/revoke_token/
+  registration_endpoint: https://app.crayon.co/oauth/register/
+  scopes_supported:
+  - mcp:read
+  grant_types_supported:
+  - authorization_code
+  - refresh_token
+  code_challenge_methods_supported:
+  - S256
+  bearer_methods_supported:
+  - header
+  metadata_files:
+  - well-known/crayon-oauth-protected-resource.json
+  - well-known/crayon-oauth-authorization-server.json
+
+tools: []
+tools_note: >-
+  tools/list is auth-gated. An anonymous JSON-RPC POST of
+  {"jsonrpc":"2.0","id":1,"method":"tools/list"} to https://mcp.crayon.co/mcp/ returns HTTP 401
+  with WWW-Authenticate: Bearer error="invalid_token" and a resource_metadata pointer, so the
+  live tool set and its inputSchemas require an authenticated Crayon tenant. Crayon publishes no
+  tool list, llms.txt or public reference, so NO tool names are recorded here rather than guessed.
+  The vendor's own announcement names two API surfaces the server fronts — a Content API
+  (battlecards, win/loss stories, competitor profiles, objection handling, customer proof points)
+  and an Answers API (structured real-time answers) — but names no tools, operations or endpoints.
+
+x-evidence:
+- fetched: '2026-08-14'
+  url: https://mcp.crayon.co/mcp
+  method: POST tools/list
+  http_status: 307
+  note: redirects to https://mcp.crayon.co/mcp/
+- fetched: '2026-08-14'
+  url: https://mcp.crayon.co/mcp/
+  method: POST tools/list
+  http_status: 401
+  content_type: application/json
+  www_authenticate: >-
+    Bearer error="invalid_token", resource_metadata="https://mcp.crayon.co/.well-known/oauth-protected-resource/mcp/"
+- fetched: '2026-08-14'
+  url: https://mcp.crayon.co/.well-known/oauth-protected-resource/mcp/
+  http_status: 200
+  content_type: application/json
+- fetched: '2026-08-14'
+  url: https://mcp.crayon.co/.well-known/oauth-authorization-server
+  http_status: 200
+  content_type: application/json
+- fetched: '2026-08-14'
+  url: https://www.crayon.co/blog/crayon-launches-first-competitive-intelligence-mcp-server
+  http_status: 200
+  note: vendor announcement of the MCP server
+
+x-ownership:
+  verified: true
+  note: >-
+    mcp.crayon.co is controlled by Crayon (crayon.co). Its RFC 9728 protected-resource document
+    names https://app.crayon.co/ as the authorization server, and app.crayon.co serves the
+    matching RFC 8414 metadata with issuer https://app.crayon.co — both on crayon.co, the company
+    profiled here. This is NOT Crayon Group ASA (crayon.com); see _wrong-company/README.md.

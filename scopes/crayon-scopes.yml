@@ -1,21 +1,38 @@
-generated: '2026-07-11'
-method: searched
-source: openapi/crayon-openapi.yml
-docs: https://apidocs.crayon.com/scenarios/token-get.html
+generated: '2026-08-14'
+method: probed
+source: https://mcp.crayon.co/.well-known/oauth-authorization-server
+docs: null
 note: >-
-  Crayon's API (Cloud-iQ) documents a single OAuth2 scope, CustomerApi, used
-  when requesting a token from the connect/token endpoint; no finer-grained
-  scopes are published (https://apidocs.crayon.com/getting-started/authentication.html).
+  Read from Crayon's RFC 8414 authorization-server metadata, which is served anonymously. Crayon
+  publishes no scopes/permissions reference page, so the metadata is the only scope surface. Note
+  that the RFC 9728 protected-resource document for the MCP endpoint declares an EMPTY
+  scopes_supported array while the authorization server declares mcp:read — the two disagree, and
+  that disagreement is recorded rather than reconciled. The earlier version of this file described
+  the "CustomerApi" scope of Crayon Group ASA's Cloud-iQ platform (crayon.com), a different
+  company; it is quarantined in _wrong-company/.
+
 schemes:
-- name: OAuth2
-  source: openapi/crayon-openapi.yml
+- name: CrayonOAuth2
+  source: well-known/crayon-oauth-authorization-server.json
   flows:
-  - flow: clientCredentials
-    tokenUrl: https://api.crayon.com/api/v1/connect/token
+  - flow: authorizationCode
+    authorizationUrl: https://app.crayon.co/oauth/authorize/
+    tokenUrl: https://app.crayon.co/oauth/token/
+
 scopes:
-- scope: CustomerApi
+- scope: mcp:read
   description: >-
-    Grants access to the Crayon customer API (Cloud-iQ); the single scope
-    value passed when requesting an OAuth2 token.
+    Read access to the Crayon competitive-intelligence MCP server at
+    https://mcp.crayon.co/mcp/. The only scope Crayon's authorization server advertises; no
+    write or admin scope is published.
+  flows:
+  - authorizationCode
   sources:
-  - https://apidocs.crayon.com/scenarios/token-get.html
+  - https://mcp.crayon.co/.well-known/oauth-authorization-server
+  - https://app.crayon.co/.well-known/oauth-authorization-server
+
+discrepancies:
+- resource: https://mcp.crayon.co/mcp/
+  document: https://mcp.crayon.co/.well-known/oauth-protected-resource/mcp/
+  issue: scopes_supported is [] on the protected resource but ["mcp:read"] on the authorization server
+  observed: '2026-08-14'

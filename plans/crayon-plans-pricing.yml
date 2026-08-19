@@ -1,0 +1,23 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.crayon.co/pricing
+plan_count: 0
+pricing_model: contact-sales
+currency: null
+plans: []
+note: >-
+  Crayon publishes no pricing tiers, no list prices, no included quotas and no API/MCP usage
+  allowances. https://www.crayon.co/pricing returns HTTP 200 and states only that "Crayon's
+  pricing is tailored to the needs of your competitive intelligence program", replacing plans with
+  a "Request an Estimate" form. The page is not in the site's own sitemap.xml. Neither the pricing
+  page nor the MCP/API announcement posts say whether the Content API, Answers API or the MCP
+  server is included in a subscription, priced separately, or limited to a tier. An honest zero:
+  nothing was omitted, there is nothing published to record.
+x-evidence:
+- fetched: '2026-08-14'
+  url: https://www.crayon.co/pricing
+  http_status: 200
+- fetched: '2026-08-14'
+  url: https://www.crayon.co/sitemap.xml
+  http_status: 200
+  note: no /pricing entry; no plan, tier or quota page of any kind

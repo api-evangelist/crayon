@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Crayon Agreements CustomerTenants API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CustomerTenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customer tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/customerTenants"
+          },
+          "docs": "List customer tenants"
+        },
+        {
+          "info": {
+            "name": "Create customer tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.crayon.com/api/v1/customerTenants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create customer tenant"
+        },
+        {
+          "info": {
+            "name": "Get customer tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crayon.com/api/v1/customerTenants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get customer tenant"
+        },
+        {
+          "info": {
+            "name": "Delete customer tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.crayon.com/api/v1/customerTenants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete customer tenant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
