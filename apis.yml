@@ -36,6 +36,15 @@ tags:
   - Battlecards
   - Win-Loss Analysis
   - Product Marketing
+  - Artificial Intelligence
+  - MCP
+tags_raw:
+  - Competitive Intelligence
+  - Market Intelligence
+  - Sales Enablement
+  - Battlecards
+  - Win-Loss Analysis
+  - Product Marketing
   - AI
   - MCP
 url: >-
@@ -57,6 +66,10 @@ apis:
   humanURL: https://www.crayon.co/blog/crayon-launches-first-competitive-intelligence-mcp-server
   baseURL: https://mcp.crayon.co/mcp/
   tags:
+  - MCP
+  - Competitive Intelligence
+  - Artificial Intelligence
+  tags_raw:
   - MCP
   - Competitive Intelligence
   - AI
