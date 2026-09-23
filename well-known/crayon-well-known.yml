@@ -1,13 +1,17 @@
-generated: '2026-08-14'
+generated: '2026-09-19'
 method: probed
 source: live GET probes of every crayon.co host named in apis.yml
-note: >-
-  crayon.co runs a wildcard DNS + HubSpot CMS catch-all: api., docs., developer., developers.,
-  status., trust., security., knowledge. and academy.crayon.co all answer HTTP 200 with the
-  byte-identical 120,191-byte www.crayon.co marketing homepage. Those 200s are NOT documents and
-  are recorded as misses. The only real .well-known documents on the estate are the two OAuth
-  metadata files served by the MCP host and the app host.
+note: 'crayon.co runs a wildcard DNS + HubSpot CMS catch-all: api., docs., developer., developers., status.,
+  trust., security., knowledge. and academy.crayon.co all answer HTTP 200 with the byte-identical 120,191-byte
+  www.crayon.co marketing homepage. Those 200s are NOT documents and are recorded as misses. The only
+  real .well-known documents on the estate are the two OAuth metadata files served by the MCP host and
+  the app host.
 
+
+  MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s primary
+  hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed and
+  were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'
 hosts:
 - host: https://mcp.crayon.co
   documents:
@@ -50,6 +54,11 @@ hosts:
     status: 404
   - path: /.well-known/agent-card.json
     status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: crayon-app-oauth-authorization-server.json
+    bytes: 674
+  path_echo_control: passed
 - host: https://www.crayon.co
   documents:
   - path: /.well-known/security.txt
@@ -73,6 +82,14 @@ hosts:
   - path: /robots.txt
     status: 200
     content_type: text/plain
-    note: >-
-      real document, but a robots file is not an API-discovery surface; recorded for completeness
+    note: real document, but a robots file is not an API-discovery surface; recorded for completeness
       only. Disallows HubSpot preview/ebook paths.
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://app.crayon.co
+    path: /.well-known/oauth-authorization-server
+    file: crayon-app-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
