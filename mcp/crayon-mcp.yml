@@ -82,3 +82,17 @@ x-ownership:
     https://app.crayon.co/ as the authorization server, and app.crayon.co serves the matching RFC 8414
     metadata with issuer https://app.crayon.co — both on crayon.co, the company profiled here. This is
     NOT Crayon Group ASA (crayon.com); see _wrong-company/README.md.
+rfc9728:
+  endpoint: https://mcp.crayon.co/mcp/
+  metadata_url: https://mcp.crayon.co/.well-known/oauth-protected-resource/mcp/
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.crayon.co/mcp/
+    authorization_servers:
+    - https://app.crayon.co/
+    scopes_supported: []
+    bearer_methods_supported:
+    - header
