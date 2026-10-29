@@ -1,4 +1,4 @@
-# Crayon (crayon)
+# Crayon
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,110 +64,115 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Crayon is a Boston-based competitive intelligence platform that automatically captures, analyzes and distributes competitor activity — website and pricing changes, product updates, social posts, news, reviews, job postings and review-site sentiment — and turns it into battlecards, competitor profiles, win/loss stories, objection handling and email digests for product marketing, sales enablement and go-to-market teams. On 2026-09-04 Crayon shipped what it describes as the first competitive-intelligence MCP server, a hosted OAuth-protected Model Context Protocol endpoint that exposes a customer's own curated Crayon content to Claude, ChatGPT, Glean, Microsoft Copilot, Google Gemini and internal Slack or Teams assistants.
+Crayon is a Boston-based competitive intelligence platform that automatically captures, analyzes and distributes competitor activity — website and pricing changes, product updates, social posts, news, reviews, job postings and review-site sentiment — and turns it into battlecards, competitor profiles, win/loss stories, objection handling and email digests for product marketing, sales enablement and go-to-market teams. Crayon AI adds automated summarization, dynamic battlecard updates and the 2026 'Sparks' feature, which reads a competitor's strategic moves and writes them up for revenue teams. On 2026-09-04 Crayon shipped what it describes as the first competitive-intelligence MCP server, a hosted OAuth-protected Model Context Protocol endpoint that exposes a customer's own curated Crayon content to Claude, ChatGPT, Glean, Microsoft Copilot, Google Gemini and internal Slack or Teams assistants. Crayon also markets a Content API and an Answers API, but publishes no developer portal, reference or machine-readable specification for either. NOTE: Crayon (crayon.co) is unrelated to Crayon Group ASA (crayon.com), the Norwegian Microsoft CSP.
 
-> **Two different companies are named Crayon.** This profile is **Crayon, `crayon.co`** (competitive
-> intelligence, Boston). It is **not** **Crayon Group ASA, `crayon.com`** (Microsoft CSP resale and
-> software asset management, Oslo), whose API lives at `api.crayon.com` / `apidocs.crayon.com`.
-> An earlier round of this profile conflated the two; the artifacts built from Crayon Group's
-> platform have been quarantined in [`_wrong-company/`](_wrong-company/README.md) and are no longer
-> referenced or scored.
+**Areas:** Competitive Intelligence · Market Intelligence · Sales Enablement · Battlecards · Win-Loss Analysis · Product Marketing · Artificial Intelligence · MCP
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/crayon/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/crayon/refs/heads/main/apis.yml)
+## Crayon on APIs.io
 
-## Scope
+Everything profiled for Crayon is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/crayon/](https://apis.io/providers/crayon/)** — or go straight to one of the APIs or properties below.
 
-- **Type:** Index
+### APIs (2)
 
-## Tags
+- [Crayon Competitive Intelligence MCP Server](https://apis.io/apis/crayon/mcp-server/) — Hosted Model Context Protocol server exposing a customer's curated Crayon competitive intelligence — battlecards, win/loss stories, competitor profiles,…
+- [Crayon Content and Answers API](https://apis.io/apis/crayon/content-answers-api/) — Crayon markets a Content API (battlecards, win/loss stories, competitor profiles, objection handling, customer proof points) and an Answers API (structured…
 
-- Competitive Intelligence
-- Market Intelligence
-- Sales Enablement
-- Battlecards
-- Win-Loss Analysis
-- Product Marketing
-- AI
-- MCP
+### Published properties
 
-## Timestamps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Created:** 2026-05-11
-- **Modified:** 2026-08-14
+#### MCP servers (1)
 
-## APIs
+Model Context Protocol servers that expose the API to agents.
 
-### Crayon Competitive Intelligence MCP Server
+- [crayon](https://apis.io/servers/crayon/crayon/)
 
-Hosted Model Context Protocol server exposing a customer's curated Crayon competitive intelligence
-to MCP-capable assistants. JSON-RPC over Streamable HTTP, protected by OAuth 2.1 with dynamic
-client registration and the single scope `mcp:read`.
+#### Security (2)
 
-- **Human URL:** [Crayon launches the first competitive intelligence MCP server](https://www.crayon.co/blog/crayon-launches-first-competitive-intelligence-mcp-server)
-- **Base URL:** `https://mcp.crayon.co/mcp/`
-- **Verified:** 2026-08-14 — anonymous `tools/list` POST returns HTTP 401 with an RFC 9728
-  `resource_metadata` challenge naming `https://app.crayon.co/` as the authorization server.
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Crayon Authentication](https://apis.io/security/crayon/crayon-authentication/)
+- [Crayon Domain Security](https://apis.io/security/crayon/crayon-domain-security/)
 
-- [MCP Server](mcp/crayon-mcp.yml)
-- [Authentication](authentication/crayon-authentication.yml)
-- [OAuth Scopes](scopes/crayon-scopes.yml)
+#### OAuth scopes (1)
 
-### Crayon Content and Answers API
+The permissions the API asks for.
 
-Marketed by Crayon, but no endpoint, base URL, authentication model or reference is published for
-either API — access runs through a sales conversation. No base URL is recorded because Crayon
-publishes none.
+- [Crayon Scopes](https://apis.io/scopes/crayon/crayon-scopes/)
 
-- **Human URL:** [Connecting competitive intel to enterprise AI with API and MCP](https://www.crayon.co/blog/connecting-competitive-intel-to-enterprise-ai-with-api-mcp)
+#### Plans and pricing (1)
 
-## Artifacts
+Published plans, tiers and prices.
 
-| Artifact | File | Method |
-|---|---|---|
-| MCP server | [mcp/crayon-mcp.yml](mcp/crayon-mcp.yml) | probed |
-| Well-known index | [well-known/crayon-well-known.yml](well-known/crayon-well-known.yml) | probed |
-| OAuth protected resource (RFC 9728) | [well-known/crayon-oauth-protected-resource.json](well-known/crayon-oauth-protected-resource.json) | verbatim |
-| OAuth authorization server (RFC 8414) | [well-known/crayon-oauth-authorization-server.json](well-known/crayon-oauth-authorization-server.json) | verbatim |
-| Authentication | [authentication/crayon-authentication.yml](authentication/crayon-authentication.yml) | probed |
-| OAuth scopes | [scopes/crayon-scopes.yml](scopes/crayon-scopes.yml) | probed |
-| Conventions | [conventions/crayon-conventions.yml](conventions/crayon-conventions.yml) | probed |
-| Conformance | [conformance/crayon-conformance.yml](conformance/crayon-conformance.yml) | probed |
-| Lifecycle | [lifecycle/crayon-lifecycle.yml](lifecycle/crayon-lifecycle.yml) | searched |
-| Plans and pricing | [plans/crayon-plans-pricing.yml](plans/crayon-plans-pricing.yml) | searched |
-| Rate limits | [rate-limits/crayon-rate-limits.yml](rate-limits/crayon-rate-limits.yml) | searched |
-| Packages | [packages/crayon-packages.yml](packages/crayon-packages.yml) | searched |
-| llms.txt | [llms/crayon-llms.txt](llms/crayon-llms.txt) | generated |
-| Domain security | [security/crayon-domain-security.yml](security/crayon-domain-security.yml) | probed |
+- [Crayon Plans Pricing](https://apis.io/plans/crayon/crayon-plans-pricing/)
 
-## Not published by Crayon
+#### Rate limits (1)
 
-Recorded as measured absences, each with a probed URL and status in the artifact above:
+Published request limits.
 
-- No OpenAPI, Swagger, GraphQL SDL, AsyncAPI or JSON Schema on any `crayon.co` host.
-- No developer portal or API reference. `api.`, `docs.`, `developer.`, `developers.`, `status.`,
-  `trust.`, `security.`, `knowledge.` and `academy.crayon.co` are wildcard DNS and return the
-  byte-identical `www.crayon.co` marketing homepage with HTTP 200.
-- No `llms.txt` (404), no `security.txt` (404), no A2A agent card (404 on both the canonical and
-  legacy paths), no `api-catalog`, no `ai-plugin.json`.
-- No status page — `crayon.statuspage.io` is unclaimed and redirects to `statuspage.io`.
-- No published pricing, rate limits, changelog, release notes, roadmap, SLA or deprecation policy.
-- No first-party SDK, CLI or client library in any public registry.
-- No published compliance certifications (no SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP claim).
+- [Crayon Rate Limits](https://apis.io/rate-limits/crayon/crayon-rate-limits/)
 
-## Common Properties
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.crayon.co)
-- [Blog](https://www.crayon.co/blog)
 - [Pricing](https://www.crayon.co/pricing)
-- [Login](https://app.crayon.co/login)
-- [Terms of Service](https://www.crayon.co/terms)
-- [Privacy Policy](https://www.crayon.co/privacy)
-- [Integrations](https://www.crayon.co/integrations)
-- [LinkedIn](https://www.linkedin.com/company/crayon-co)
+- [Blog](https://www.crayon.co/blog)
+- [Terms of service](https://www.crayon.co/terms)
+- [Privacy policy](https://www.crayon.co/privacy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 21.2** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 60.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 38.2 |
+
+**Agent readiness 29.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 31.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/crayon/](https://apis.io/providers/crayon/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Crayon: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/crayon/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
